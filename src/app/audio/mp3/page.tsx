@@ -85,9 +85,9 @@ const ConvertToMp3Page = () => {
                 Your browser does not support the audio element.
               </audio>
             </div>
-            <Link className="mt-4" href={audioSrc} download={fileName}>
+            <a className="mt-4" href={audioSrc} download={fileName}>
               Download
-            </Link>
+            </a>
           </>
         )}
       </section>
