@@ -6,7 +6,6 @@ export const convertFileToMP3 = async (file: File, ffmpeg: FFmpeg) => {
   await ffmpeg.run(
     "-i",
     `${file?.name}.mp4`,
-    // `${file?.name}.mp4`, // alterar esse extensão está dando uma bugada.
     "-b:a",
     "192K",
     "-vn",
@@ -14,7 +13,7 @@ export const convertFileToMP3 = async (file: File, ffmpeg: FFmpeg) => {
   );
   const data = await ffmpeg.FS("readFile", `${file?.name}.mp3`);
   const src = URL.createObjectURL(
-    new Blob([data.buffer], { type: "audio/mpeg3" })
+    new Blob([new Uint8Array(data.buffer)], { type: "audio/mpeg3" })
   );
 
   return src;
